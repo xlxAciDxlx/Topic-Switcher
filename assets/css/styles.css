@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+body {
+        background-color: #EAEAEA;
+        color: #000000;
+        font-family: "Raleway", "Trebuchet MS", Verdana, Arial, sans-serif;
+        font-size: 16px;
+        margin: 10px;
+        padding: 0;
+}
+
+button, input {
+        font-family: inherit;
+        font-size: 1em;
+}
+
+.fileSelector {
+        background-color: #FFFFFF;
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+        border: 1px solid #109EFF;
+        border-radius: 5px;
+        box-shadow: inset 0 1px rgba(255, 255, 255, 0.5), 0 0 5px rgba(0, 0, 0, 0.2);
+        color: Blue;
+        font-size: auto;
+        height: auto;
+        margin-bottom: 5px;
+        padding: 5px 10px;
+        text-align: center;
+        transition: all 0.3s ease-in-out;
+}
+
+.fileSelector.hidden input {
+        display: none;
+}
+
+.hidden {
+        background-color: transparent;
+        background-image: none;
+        border-color: transparent;
+        box-shadow: 0 0 0;
+        font-size: 0!important;
+        height: 0!important;
+        margin: 0;
+        padding: 0;
+}
+
+#topics {
+        margin: 0;
+        margin-top: 5px;
+        padding: 0;
+}
+
+#topics #noTopics {
+        background-color: LightBlue;
+        border: 1px solid #109EFF;
+        color: Blue;
+        text-align: center;
+}
+
+#topics #noTopics.hidden {
+        border: 0;
+}
+
+#topics .topic {
+        background-color: #F3F3F3;
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.04));
+        border: 1px solid rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+        box-shadow: inset 0 1px rgba(255, 255, 255, 0.5), 0 0 5px rgba(0, 0, 0, 0.2);
+        color: #000000;
+        font-size: auto;
+        height: auto;
+        left: 0;
+        margin-bottom: 15px;
+        padding: 5px 10px;
+        transition: all 0.3s ease-in-out;
+}
+
+#topics .topic.current {
+        background-color: #000000;
+        background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgb(0, 0, 0));
+        border: 1px solid #000000;
+        color: #FFFFFF;
+}
+
+#topics li:first-child[id!=noTopics], #topics li:last-child {
+        animation: growA 0.5s forwards;
+}
+
+@keyframes growA {
+        0% {
+                font-size: 0em;
+                height: 0em;
+                left: 100%;
+                line-height: 0em;
+                margin-bottom: 0px;
+                opacity: 0;
+                padding: 0;
+        }
+        100% {
+                font-size: 1em;
+                height: 1.6em;
+                left: 0%;
+                line-height: 1.6em;
+                margin-bottom: 4px;
+                opacity: 1;
+                padding: 0 10px;
+        }
+}
+
+@keyframes growB {
+        0% {
+                opacity: 1;
+                font-size: 1em;
+                height: 1.6em;
+                line-height: 1.6em;
+        }
+}

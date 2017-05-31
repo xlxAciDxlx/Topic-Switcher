@@ -1,5 +1,5 @@
 var file = "";
-var hideOtherTopics = 0;
+var hideOtherTopics = 1;
 var lastShownTopic = 0;
 var maxTopics = 4;
 var topics = [];
@@ -22,7 +22,6 @@ function manageTopics(start) {
         if (topics.length > 0) {
                 if (start > 0) {
                         start = (+start + 1);
-                        console.info("Showing topics starting at " + start);
                 }
 
                 var visibleTopics = getVisibleTopics();
@@ -59,10 +58,9 @@ function readFile() {
         var reader = new FileReader();
         reader.readAsText(file);
         reader.onload = function(e) {
-                document.getElementById("noTopics").setAttribute("class", "hidden");
-
                 topics = reader.result.split("\n");
                 manageTopics(lastShownTopic);
+                document.getElementById("noTopics").setAttribute("class", "hidden");
         }
 }
 

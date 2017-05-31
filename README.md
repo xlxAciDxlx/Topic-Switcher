@@ -1,5 +1,5 @@
-# Topic-Switcher
-A simple Topic Switching app, great for podcasts and discussion videos/livestreams
+# Topic Switcher
+A simple Topic Switching app, great for podcasts and discussion videos/livestreams.
 
 ### Getting Started
 - Download the latest archive by [clicking here](https://github.com/xlxAciDxlx/Topic-Switcher/archive/master.zip)

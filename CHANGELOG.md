@@ -1,4 +1,10 @@
 # Changelog
+## v1.2.3
+- Changed a small stylesheet rule to prevent odd sizing of the last topic in the list
+- Fixed a bug where the last and only topic can be hidden
+- Changed the CSS so that the last child will have a standard cursor, not the pointer as no actions can be taken
+- Scrollbars should no longer appear if the content area is too small in width or height
+
 ## v1.2.2
 - Changed the default behavior of the switcher to hide other topics
 - Changed default font from *Raleway* to *Lato*

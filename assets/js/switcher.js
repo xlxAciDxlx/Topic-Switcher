@@ -19,38 +19,40 @@ function getVisibleTopics() {
 }
 
 function manageTopics(start) {
-        if (topics.length > 0) {
-                if (start > 0) {
-                        start = (+start + 1);
+        if (topics.length == 0) {
+                return;
+        }
+
+        if (start > 0) {
+                start = (+start + 1);
+        }
+
+        var visibleTopics = getVisibleTopics();
+        if (visibleTopics == maxTopics) {
+                return;
+        }
+
+        if (visibleTopics == 0 && lastShownTopic == topics.length) {
+                document.getElementById("fileSelector").setAttribute("class", "fileSelector hidden");
+        }
+
+        var maxTopicsLoop = maxTopics;
+        if (visibleTopics > 0) {
+                maxTopicsLoop = (maxTopics - visibleTopics);
+        }
+
+        for (i = start; i < topics.length && i < (start + maxTopicsLoop); i++) {
+                var topicItem = document.createElement("li");
+                topicItem.setAttribute("class", "topic");
+                topicItem.setAttribute("id", "topic" + i);
+                topicItem.appendChild(document.createTextNode(topics[i]));
+
+                if (i == 0) {
+                        topicItem.setAttribute("class", "topic current");
                 }
 
-                var visibleTopics = getVisibleTopics();
-                if (visibleTopics == maxTopics) {
-                        return;
-                }
-
-                if (visibleTopics == 0 && lastShownTopic == topics.length) {
-                        document.getElementById("fileSelector").setAttribute("class", "fileSelector hidden");
-                }
-
-                var maxTopicsLoop = maxTopics;
-                if (visibleTopics > 0) {
-                        maxTopicsLoop = (maxTopics - visibleTopics);
-                }
-
-                for (i = start; i < topics.length && i < (start + maxTopicsLoop); i++) {
-                        var topicItem = document.createElement("li");
-                        topicItem.setAttribute("class", "topic");
-                        topicItem.setAttribute("id", "topic" + i);
-                        topicItem.appendChild(document.createTextNode(topics[i]));
-
-                        if (i == 0) {
-                                topicItem.setAttribute("class", "topic current");
-                        }
-
-                        topicContainer.appendChild(topicItem);
-                        lastShownTopic = i;
-                }
+                topicContainer.appendChild(topicItem);
+                lastShownTopic = i;
         }
 }
 
@@ -88,6 +90,10 @@ topicContainer.addEventListener("click", function(e) {
                         return;
                 }
 
+                if (!item.nextSibling) {
+                        return;
+                }
+
                 if (hideOtherTopics) {
                         item.className = "hidden";
                 } else {
@@ -96,17 +102,16 @@ topicContainer.addEventListener("click", function(e) {
 
                 var nextId = +id + 1;
                 var nextElement = document.getElementById("topic" + nextId);
-                if (nextElement) {
-                        nextElement.setAttribute("class", "topic current");
-                }
-
                 var visibleTopics = getVisibleTopics();
                 if (topics.length == 0 || visibleTopics == maxTopics) {
                         return;
                 }
 
-                if (lastShownTopic > 0 && lastShownTopic > 0 && lastShownTopic != topics.length) {
-                        manageTopics(lastShownTopic);
+                if (nextElement) {
+                        nextElement.setAttribute("class", "topic current");
+                        if (lastShownTopic > 0 && lastShownTopic > 0 && lastShownTopic != topics.length) {
+                                manageTopics(lastShownTopic);
+                        }
                 }
         }
 });

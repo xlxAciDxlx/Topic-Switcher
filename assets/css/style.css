@@ -5,6 +5,7 @@ body {
         font-family: "Lato", sans-serif;
         font-size: 16px;
         margin: 10px;
+        overflow: hidden;
         padding: 0;
 }
 
@@ -96,6 +97,10 @@ h4 {
         cursor: pointer;
 }
 
+#topics .topic.current:last-child {
+        cursor: default;
+}
+
 #topics li:first-child, #topics li:last-child {
         animation: grow 0.5s forwards;
 }
@@ -123,12 +128,11 @@ h4 {
                 padding: 0;
         }
         100% {
-                font-size: 1em;
-                height: 1.6em;
+                font-size: auto;
+                height: auto;
                 left: 0%;
-                line-height: 1.6em;
                 margin-bottom: 4px;
                 opacity: 1;
-                padding: 0 10px;
+                padding: auto;
         }
 }

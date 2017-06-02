@@ -1,4 +1,9 @@
 # Changelog
+## v1.2.5
+- Fixed a bug where the topic display would show for blank lines (which should never happen, but.. y'know)
+- Fixed a bug where if a blank line is encountered, the topic switcher doesn't properly set the next active topic
+- Fixed a bug where the last topic counter wasn't properly set as it relied on the numbers always being incremental (1,2,3) rather than possibly 1,3,4,5
+
 ## v1.2.4
 - Changed the default animation from a grow effect, to a slide left effect
 - Fixed a bug where a blank file would add 4 blank topic containers

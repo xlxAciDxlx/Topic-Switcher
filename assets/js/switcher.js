@@ -47,6 +47,11 @@ function manageTopics() {
         }
 
         for (i = start; i < topics.length && i < (start + maxTopicsLoop); i++) {
+                if (topics[i].length == 1) {
+                        maxTopicsLoop++;
+                        continue;
+                }
+
                 var topicItem = document.createElement("li");
                 topicItem.setAttribute("class", "topic");
                 topicItem.setAttribute("id", "topic" + i);
@@ -57,7 +62,7 @@ function manageTopics() {
                 }
 
                 topicContainer.appendChild(topicItem);
-                lastShownTopic += 1;
+                lastShownTopic = (+i + 1);
         }
 }
 
@@ -119,6 +124,9 @@ topicContainer.addEventListener("click", function(e) {
 
                 var nextId = +id + 1;
                 var nextElement = document.getElementById("topic" + nextId);
+                if (!nextElement) {
+                        nextElement = document.getElementById("topic" + id).nextSibling;
+                }
                 var visibleTopics = getVisibleTopics();
                 if (topics.length == 0 || visibleTopics == maxTopics) {
                         return;

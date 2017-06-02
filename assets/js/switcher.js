@@ -47,7 +47,7 @@ function manageTopics() {
         }
 
         for (i = start; i < topics.length && i < (start + maxTopicsLoop); i++) {
-                if (topics[i].length == 1) {
+                if (topics[i].length == 0 || topics[i].length == 1) {
                         maxTopicsLoop++;
                         continue;
                 }

@@ -1,4 +1,7 @@
 # Changelog
+## v1.2.6
+- Should properly fix the blank line bug
+
 ## v1.2.5
 - Fixed a bug where the topic display would show for blank lines (which should never happen, but.. y'know)
 - Fixed a bug where if a blank line is encountered, the topic switcher doesn't properly set the next active topic

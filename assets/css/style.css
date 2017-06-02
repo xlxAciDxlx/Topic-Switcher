@@ -69,6 +69,7 @@ h4 {
 }
 
 #topics {
+        list-style: none;
         margin: 0;
         margin-top: 5px;
         padding: 0;
@@ -85,8 +86,10 @@ h4 {
         font-size: 1em;
         height: auto;
         left: 0;
+        margin: 0;
         margin-bottom: 15px;
         padding: 5px 10px;
+        position: relative;
         transition: all 0.3s ease-in-out;
 }
 
@@ -102,7 +105,7 @@ h4 {
 }
 
 #topics li:first-child, #topics li:last-child {
-        animation: grow 0.5s forwards;
+        animation: slideLeft 0.5s forwards;
 }
 
 #topics #noTopics {
@@ -115,6 +118,15 @@ h4 {
 
 #topics #noTopics.hidden {
         border: 0;
+}
+
+@keyframes slideLeft {
+        0% {
+                left: 100%;
+        }
+        100% {
+                left: 0;
+        }
 }
 
 @keyframes grow {

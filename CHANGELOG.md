@@ -1,4 +1,11 @@
 # Changelog
+## v1.2.4
+- Changed the default animation from a grow effect, to a slide left effect
+- Fixed a bug where a blank file would add 4 blank topic containers
+- Fixed a bug where a blank file being opened would still hide the file selector
+- Fixed a bug where the file selector wouldn't be hidden after the first topic was shown
+- Slightly tweaked some CSS rules for better styling
+
 ## v1.2.3
 - Changed a small stylesheet rule to prevent odd sizing of the last topic in the list
 - Fixed a bug where the last and only topic can be hidden

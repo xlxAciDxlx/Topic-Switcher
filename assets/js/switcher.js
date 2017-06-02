@@ -2,8 +2,9 @@ var file = "";
 var hideOtherTopics = 1;
 var lastShownTopic = 0;
 var maxTopics = 4;
-var topics = [];
+var start = 0;
 var topicContainer = document.getElementById("topics");
+var topics = [];
 
 function getVisibleTopics() {
         var topicsToCheck = document.getElementsByTagName("li");
@@ -18,27 +19,31 @@ function getVisibleTopics() {
         return visibleTopics;
 }
 
-function manageTopics(start) {
+function manageTopics() {
         if (topics.length == 0) {
                 return;
         }
 
-        if (start > 0) {
-                start = (+start + 1);
+        if (lastShownTopic > 0) {
+                start = lastShownTopic;
+        }
+
+        if (topics.length > 0) {
+                document.getElementById("fileSelector").setAttribute("class", "fileSelector hidden");
         }
 
         var visibleTopics = getVisibleTopics();
-        if (visibleTopics == maxTopics) {
+        if (visibleTopics == maxTopics || visibleTopics == topics.length) {
                 return;
-        }
-
-        if (visibleTopics == 0 && lastShownTopic == topics.length) {
-                document.getElementById("fileSelector").setAttribute("class", "fileSelector hidden");
         }
 
         var maxTopicsLoop = maxTopics;
         if (visibleTopics > 0) {
-                maxTopicsLoop = (maxTopics - visibleTopics);
+                if (topics.length == 1) {
+                        maxTopicsLoop = topics.length;
+                } else {
+                        maxTopicsLoop = (maxTopics - visibleTopics);
+                }
         }
 
         for (i = start; i < topics.length && i < (start + maxTopicsLoop); i++) {
@@ -52,7 +57,7 @@ function manageTopics(start) {
                 }
 
                 topicContainer.appendChild(topicItem);
-                lastShownTopic = i;
+                lastShownTopic += 1;
         }
 }
 
@@ -60,9 +65,15 @@ function readFile() {
         var reader = new FileReader();
         reader.readAsText(file);
         reader.onload = function(e) {
-                topics = reader.result.split("\n");
-                manageTopics(lastShownTopic);
+                var readerResult = reader.result;
+                if (readerResult == "") {
+                        return;
+                }
+
+                topics = readerResult.split("\n");
                 document.getElementById("noTopics").setAttribute("class", "hidden");
+
+                manageTopics();
         }
 }
 
@@ -72,11 +83,17 @@ window.onload = function() {
                 file = fileInput.files[0];
                 readFile();
 
-                document.getElementById("fileSelector").setAttribute("class", "fileSelector hidden");
+                if (topics.length > 0) {
+                        document.getElementById("fileSelector").setAttribute("class", "fileSelector hidden");
+                }
         });
 }
 
 window.setInterval(function() {
+        if (!file) {
+                return;
+        }
+
         readFile();
 }, 5000);
 
